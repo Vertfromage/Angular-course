@@ -1,0 +1,6 @@
+<div>
+    <button (click)="onSelectUser()">
+        <img [src]="imagePath()" [alt]="selectedUser().name"/> <!--[Properly binding]... not attribute binding https://www.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/43797676#overview-->
+        <span>{{selectedUser().name}}</span> <!--{{String interpolation}}, if using signal invoke as function-->
+    </button>
+</div>
