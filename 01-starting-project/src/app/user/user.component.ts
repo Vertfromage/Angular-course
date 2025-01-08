@@ -1,4 +1,4 @@
-import { Component, computed, Input, input } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
@@ -10,14 +10,13 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  // @Input({required:true}) avatar!: string; // ! means it will be set to a value
-  // @Input({required:true}) name!: string;
-  avatar = input.required<string>() // signal version of inputs
-  name = input.required<string>() // input signals read only
+  // old way of inputs without signals will be present in many projects
+  @Input({required:true}) avatar!: string; // ! means it will be set to a value
+  @Input({required:true}) name!: string; 
   
-
-  imagePath = computed(()=>'assets/users/' + this.avatar())
-
+  get imagePath(){
+    return 'assets/users/' + this.avatar
+  }
   
   // event listener use like this onSelectUser() with brackets
   onSelectUser() {
