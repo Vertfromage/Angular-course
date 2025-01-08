@@ -1,5 +1,17 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, EventEmitter, Input, input, Output } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
+
+// type User = {
+//   id: string;
+//   avatar: string;
+//   name: string;
+// };
+
+interface User {
+  id:string;
+  avatar:string
+  name:string
+}
 
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 @Component({
@@ -10,15 +22,17 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  // old way of inputs without signals will be present in many projects
-  @Input({required:true}) avatar!: string; // ! means it will be set to a value
-  @Input({required:true}) name!: string; 
-  
-  get imagePath(){
-    return 'assets/users/' + this.avatar
+  @Input({ required: true }) user!: User;
+
+  @Output() select = new EventEmitter<string>(); // type not required here but good for type safety
+  // select = output<string>(); Alternative without decorators
+
+  get imagePath() {
+    return 'assets/users/' + this.user.avatar;
   }
-  
+
   // event listener use like this onSelectUser() with brackets
   onSelectUser() {
+    this.select.emit(this.user.id);
   }
 }

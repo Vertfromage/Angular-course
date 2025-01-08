@@ -1,14 +1,17 @@
 <app-header />
 <main>
   <ul id="users">
-    <li>
-      <app-user [avatar]="users[0].avatar" [name]="users[0].name"/>
-    </li>
-    <li>
-      <app-user [avatar]="users[0].avatar" [name]="users[0].name"/>
-    </li>
-    <li>
-      <app-user [avatar]="users[0].avatar" [name]="users[0].name"/>
-    </li>
+    <!-- Must add track : unique variable for updating-->
+    @for (user of users; track user.id) {
+      <li>
+        <app-user [user]="user" (select)="onSelectUser($event)" />
+      </li>
+    }
   </ul>
+  @if (selectedUser){
+    <app-tasks [name]="selectedUser.name" />
+  } @else {
+    <p id="fallback">Select a suer to see their tasks!</p>
+  }
+
 </main>
