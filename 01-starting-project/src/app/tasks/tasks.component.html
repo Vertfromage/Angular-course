@@ -1,6 +1,6 @@
 
 @if (isAddingTask && userId){
-   <app-form [userId]="userId" (click)="onCancelAddTask()" (add)="onAddTask($event)"/>
+   <app-form [userId]="userId" (close)="onCloseAddTask()"/> 
 }
 
 <section id="tasks">
