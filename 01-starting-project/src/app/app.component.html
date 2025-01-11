@@ -4,14 +4,14 @@
     <!-- Must add track : unique variable for updating-->
     @for (user of users; track user.id) {
       <li>
-        <app-user [user]="user" (select)="onSelectUser($event)" />
+        <app-user [selected]="selectedUserId===user.id" [user]="user" (select)="onSelectUser($event)" />
       </li>
     }
   </ul>
   @if (selectedUser){
-    <app-tasks [name]="selectedUser.name" />
+    <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name" />
   } @else {
-    <p id="fallback">Select a suer to see their tasks!</p>
+    <p id="fallback">Select a user to see their tasks!</p>
   }
 
 </main>

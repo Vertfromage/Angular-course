@@ -1,19 +1,6 @@
-import { Component, EventEmitter, Input, input, Output } from '@angular/core';
-import { DUMMY_USERS } from '../dummy-users';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { type User } from './user.model';
 
-// type User = {
-//   id: string;
-//   avatar: string;
-//   name: string;
-// };
-
-interface User {
-  id:string;
-  avatar:string
-  name:string
-}
-
-const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 @Component({
   selector: 'app-user',
   standalone: true,
@@ -23,7 +10,7 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 })
 export class UserComponent {
   @Input({ required: true }) user!: User;
-
+  @Input({required:true}) selected!: boolean;
   @Output() select = new EventEmitter<string>(); // type not required here but good for type safety
   // select = output<string>(); Alternative without decorators
 
