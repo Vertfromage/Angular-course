@@ -5,8 +5,7 @@ import { TasksService } from '../tasks.service';
 // forms model automatically prevents default browser behavior and has a custom event
 @Component({
   selector: 'app-form',
-  standalone: true,
-  imports: [FormsModule],
+  standalone: false,
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
 })
